@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爬蟲報告</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>爬蟲報告</h1>
+
+    <h2>介紹</h2>
+    <p>爬蟲是一種程式，用於自動訪問網頁並從中收集信息。本報告探討了一個簡單爬蟲的設計和實現。</p>
+
+    <h2>設計</h2>
+    <p>本爬蟲程式設計用於收集指定網站的頁面信息。以下是爬蟲程式的主要設計特點：</p>
+
+    <ul>
+        <li><strong>目標網站：</strong> 選擇了一個目標網站進行爬取。</li>
+        <li><strong>程式語言：</strong> 使用 Python 語言進行開發。</li>
+        <li><strong>庫的選擇：</strong> 使用了 Requests 库進行網頁的 HTTP 請求，以及 BeautifulSoup 库來解析和提取 HTML 元素。</li>
+        <li><strong>主要功能：</strong> 爬蟲程式能夠訪問網站的不同頁面，提取指定的資訊如標題、內容等，並將這些資訊存儲或顯示。</li>
+    </ul>
+
+    <h2>程式碼示例</h2>
+    <p>以下是爬蟲程式的部分 Python 代碼示例：</p>
+
+    <pre><code>
+import requests
+from bs4 import BeautifulSoup
+
+# 定義爬取函式
+def crawl_website(url):
+    # 發送 HTTP GET 請求
+    response = requests.get(url)
+    
+    # 解析 HTML 內容
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    # 提取標題
+    title = soup.find('title').text
+    
+    # 提取內容
+    content = soup.find('div', class_='content').text
+    
+    return title, content
+
+# 主程序入口
+if __name__ == '__main__':
+    target_url = 'http://example.com'
+    title, content = crawl_website(target_url)
+    
+    print(f'Title: {title}')
+    print(f'Content: {content}')
+    </code></pre>
+
+    <h2>結論</h2>
+    <p>爬蟲程式是一種強大的工具，用於自動化地收集網路上的資訊。通過本報告，我們瞭解了爬蟲的基本設計和實現過程。</p>
+
+</body>
+
+</html>
